@@ -5,25 +5,24 @@ import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import KidsPage from "./pages/KidsPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
-
 import AppointmentsPage from "./pages/AppointmentsPage";
 import CleaningPage from "./pages/CleaningPage";
 import ShoppingPage from "./pages/ShoppingPage";
 import VacationsPage from "./pages/VacationsPage";
 
-// 🔒 FIXED ProtectedRoute — prevents flashing + disappearing
+// 🔒 FINAL FIXED ProtectedRoute — prevents flashing + disappearing
 function ProtectedRoute({ children }) {
-  const [ready, setReady] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(null);
 
   React.useEffect(() => {
-    const stored = localStorage.getItem("loggedIn") === "true";
-    setLoggedIn(stored);
-    setReady(true);
+    const value = localStorage.getItem("loggedIn");
+    setLoggedIn(value === "true");
   }, []);
 
-  // ⛔ Prevents instant redirect before localStorage loads
-  if (!ready) return null;
+  // ⛔ Prevent redirect until we KNOW the value
+  if (loggedIn === null) {
+    return <div></div>; // blank while checking
+  }
 
   return loggedIn ? children : <Navigate to="/" />;
 }
