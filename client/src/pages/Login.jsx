@@ -10,7 +10,10 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("/api/auth/login", { username, password });
+      const res = await axios.post(
+        "https://YOUR-RENDER-URL.onrender.com/api/auth/login",
+        { username, password }
+      );
 
       if (res.data.success) {
         localStorage.setItem("loggedIn", "true");
@@ -90,4 +93,5 @@ const styles = {
 };
 
 export default Login;
+
 
