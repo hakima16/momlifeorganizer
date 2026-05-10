@@ -6,15 +6,25 @@ import HomePage from "./pages/HomePage";
 import KidsPage from "./pages/KidsPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
 
-// ⭐ These must match your actual filenames
 import AppointmentsPage from "./pages/AppointmentsPage";
 import CleaningPage from "./pages/CleaningPage";
 import ShoppingPage from "./pages/ShoppingPage";
 import VacationsPage from "./pages/VacationsPage";
 
-// 🔒 Protect pages unless logged in
+// 🔒 FIXED ProtectedRoute — prevents flashing + disappearing
 function ProtectedRoute({ children }) {
-  const loggedIn = localStorage.getItem("loggedIn");
+  const [ready, setReady] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const stored = localStorage.getItem("loggedIn") === "true";
+    setLoggedIn(stored);
+    setReady(true);
+  }, []);
+
+  // ⛔ Prevents instant redirect before localStorage loads
+  if (!ready) return null;
+
   return loggedIn ? children : <Navigate to="/" />;
 }
 
@@ -102,4 +112,5 @@ function App() {
 }
 
 export default App;
+
 
