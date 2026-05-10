@@ -11,7 +11,7 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://YOUR-RENDER-URL.onrender.com/api/auth/login",
+        "https://momlifeorganizer.onrender.com/api/auth/login",
         { username, password }
       );
 
@@ -93,5 +93,3 @@ const styles = {
 };
 
 export default Login;
-
-
