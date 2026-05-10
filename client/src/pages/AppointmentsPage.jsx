@@ -16,8 +16,6 @@ export default function AppointmentsPage() {
     notes: "",
   });
 
-  const [editingId, setEditingId] = useState(null);
-
   // Load appointments on page load
   useEffect(() => {
     loadAppointments();
@@ -46,7 +44,6 @@ export default function AppointmentsPage() {
 
     // Reset form
     setForm({ name: "", date: "", time: "", notes: "" });
-    setEditingId(null);
   };
 
   const handleDelete = async (id) => {
@@ -174,7 +171,7 @@ const styles = {
     gap: "10px",
   },
   editBtn: {
-    background: "#ff4f9a",   // pink like delete
+    background: "#ff4f9a",
     color: "white",
     border: "none",
     padding: "8px 12px",
@@ -192,5 +189,3 @@ const styles = {
     cursor: "pointer",
   },
 };
-
-
