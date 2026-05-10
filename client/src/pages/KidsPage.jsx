@@ -37,6 +37,8 @@
     </button>
   )}
 </div>
+export default KidsPage;
+
 
 
 
