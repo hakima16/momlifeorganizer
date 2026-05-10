@@ -10,7 +10,7 @@ import CleaningPage from "./pages/CleaningPage";
 import ShoppingPage from "./pages/ShoppingPage";
 import VacationsPage from "./pages/VacationsPage";
 
-// 🔒 FINAL FIXED ProtectedRoute — prevents flashing + disappearing
+// 🔒 FINAL ProtectedRoute — production safe
 function ProtectedRoute({ children }) {
   const [loggedIn, setLoggedIn] = React.useState(null);
 
@@ -111,5 +111,6 @@ function App() {
 }
 
 export default App;
+
 
 
